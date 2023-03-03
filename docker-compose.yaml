@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+    carapp:
+      build:
+        context: ./car_service
+
+    nginx:
+      build:
+        context: ./nginx
+      ports:
+        - "5000:5000"

@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "958144ca-38f5-4ba3-85e4-d8319b452df6",
+		"name": "CarApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15054383"
+	},
+	"item": [
+		{
+			"name": "get a sport car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Car data check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.car_body_style).to.contain(\"Coupe\");\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Car data check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.fuel_type).to.contain(\"Gasoline\");\r",
+							"    console.log(jsonData)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}:{{port}}/car?type={{carTypeSport}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"car"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "{{carTypeSport}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a electrical car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Car data check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.car_body_style).to.contain(\"Sedan\");\r",
+							"    console.log(jsonData)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Car fuel_type check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.fuel_type).to.contain(\"Electric\");\r",
+							"    console.log(jsonData)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}:{{port}}/car?type={{carTypeElectric}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"car"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "{{carTypeElectric}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid car type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Invalid response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error).to.contain(\"Invalid car type\");\r",
+							"    console.log(jsonData)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}:{{port}}/car?type=mycar",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"car"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "mycar"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

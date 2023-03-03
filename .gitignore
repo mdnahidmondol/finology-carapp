@@ -1,0 +1,5 @@
+env/
+__pycache__/
+carapp_api_testing/node_modules
+carapp_api_testing/package-lock.json
+carapp_api_testing/Reports
